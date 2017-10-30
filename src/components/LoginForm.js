@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import {Text} from 'react-native';
 import { connect } from 'react-redux';
-import {emailChanged} from '../actions'
+import {emailChanged, passwordChanged, loginUser} from '../actions'
 import {Card, CardSection, Input, Button} from './common';
 
 class LoginForm extends Component {
@@ -10,6 +11,15 @@ class LoginForm extends Component {
         //2.Call Action Creator
         this.props.emailChanged(text);
     } 
+
+    onPasswordChange(text){
+        this.props.passwordChanged(text);
+    }
+
+    onButtonPress(){
+        const {email, password} = this.props;
+        this.props.loginUser({email,password});
+    }
 
 
     render() {
@@ -27,10 +37,17 @@ class LoginForm extends Component {
                     secureTextEntry
                     label = 'Password'
                     placeholder = 'password'
+                    onChangeText={this.onPasswordChange.bind(this)} //because we reference this in the callhback we bind "this"
+                    value={this.props.password}
                    />
                </CardSection>
+
+                <Text style = {styles.errorTextStyle}>
+                    {this.props.error}
+                </Text>
+
                <CardSection>
-                   <Button>
+                   <Button onPress={this.onButtonPress.bind(this)}>
                        Login
                    </Button>
                </CardSection>
@@ -39,10 +56,17 @@ class LoginForm extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        email: state.auth.email
-    };
+const styles = {
+    errorTextStyle: {
+        fontSize: 20,
+        alignSelf:'center',
+        color: 'red'
+    }
+}
+
+const mapStateToProps = ({auth}) => {
+    const {email, password, error } = auth;
+    return {email, password, error};
 };
 
-export default connect(mapStateToProps, {emailChanged})(LoginForm);
+export default connect(mapStateToProps, {emailChanged, passwordChanged, loginUser})(LoginForm);

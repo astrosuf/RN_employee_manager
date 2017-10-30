@@ -1,12 +1,28 @@
-import {EMAIL_CHANGED} from '../actions/types';
+import {
+    EMAIL_CHANGED, 
+    PASSWORD_CHANGED,
+    LOGIN_USER_SUCCESS,
+    LOGIN_USER_FAIL
+} from '../actions/types';
 
-const INITIAL_STATE = {email: ''}; //Initial state as an empty strubg
+const INITIAL_STATE = {
+    email: '', 
+    password: '',
+    user: null,
+    error: ''
+}; //Initial state as an empty strubg
 
 export default (state = INITIAL_STATE, action)  => { //if no state then it sets the initial state
     switch(action.type){    
         //state object needs to be updated carefully     
         case EMAIL_CHANGED: 
-            return {...state, email: action.payload}; //create a brand new object which pr
+            return {...state, email: action.payload}; //create a brand new object 
+        case PASSWORD_CHANGED:
+            return {...state, password: action.payload};
+        case LOGIN_USER_SUCCESS:
+            return {...state, user: action.payload};
+        case LOGIN_USER_FAIL:
+            return {...state, error: "Authentication Failed", password: ''}
         default: 
             return state;
     }
