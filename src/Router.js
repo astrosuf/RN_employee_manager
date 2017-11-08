@@ -9,17 +9,10 @@ const RouterComponent = () => {
         <Router sceneStyle={{paddingTop: 65}}>
 
             <Scene key="auth">
-            <Scene 
-                    key="employeeCreate" 
-                    component={EmployeeCreate} 
-                    title="Create Employee"
-                />
                 <Scene key="login" component={LoginForm} title="Please Login" />
             </Scene>
 
             <Scene key="main">
-                
-
                 <Scene 
                     key="employeeList" 
                     component={EmployeeList} 
@@ -29,7 +22,12 @@ const RouterComponent = () => {
                     
                 />
 
-                
+                <Scene 
+                        key="employeeCreate" 
+                        component={EmployeeCreate} 
+                        title="Create Employee"
+                />
+    
             </Scene>
 
         </Router>
