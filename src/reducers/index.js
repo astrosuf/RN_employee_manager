@@ -7,7 +7,7 @@ export default combineReducers (
     {
         auth: AuthReducer,
         employeeForm: EmployeeFormReducer,
-        EmployeeReducer: EmployeeReducer
+        employees: EmployeeReducer
     }
 );
 

@@ -18,12 +18,13 @@ class EmployeeList extends Component{
         //this.props is still the old set of props
 
         this.createDataSource(nextProps);
-
     }
-
+    
     createDataSource({employees}){ //helper method to ensure that doesn't matter how the comp is rendered its correct.
+        // console.log(employees);
+        // console.log(this.props);
         const ds = new ListView.DataSource({
-            rowHasChanged: (r1, r2) => r1 != r2
+            rowHasChanged: (r1, r2) => r1 !== r2
         });
 
         this.dataSource = ds.cloneWithRows(employees);
