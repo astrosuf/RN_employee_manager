@@ -13,7 +13,6 @@ class EmployeeCreate extends Component {
     }
 
 
-
     render() {
         return (
             <Card>
@@ -53,7 +52,7 @@ class EmployeeCreate extends Component {
                 </CardSection>
 
                 <CardSection>
-                    <Button onPress ={onButtonPress.bind(this)}> 
+                    <Button onPress ={this.onButtonPress.bind(this)}> 
                         Create    
                     </Button>
                 </CardSection>
